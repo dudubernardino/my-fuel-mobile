@@ -18,6 +18,8 @@ export function* signIn({payload}) {
 
     if (user.admin) {
       Alert.alert('Erro no login', 'O usuário não pode ser admin');
+
+      yield put(signFailure());
       return;
     }
 
@@ -42,6 +44,7 @@ export function* signUp({payload}) {
       name,
       email,
       password,
+      admin: false
     });
 
     const {token, user} = response.data;
@@ -61,8 +64,6 @@ export function setToken({payload}) {
   if (!payload || !payload.auth) return;
 
   const {token} = payload.auth;
-
-  console.tron.log(token);
 
   if (token) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
