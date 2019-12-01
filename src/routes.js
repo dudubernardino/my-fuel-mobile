@@ -5,6 +5,7 @@ import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 
 import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 
 export default (isSigned = false) =>
   createAppContainer(
@@ -16,6 +17,16 @@ export default (isSigned = false) =>
         }),
         App: createBottomTabNavigator({
           Dashboard,
+          Profile
+        }, {
+          tabBarOptions: {
+            keyboardHidesTabBar: true,
+            activeTintColor: 'rgba(9, 9, 121, 1)',
+            inactiveTintColor: 'rgba(9, 9, 121, 0.6)',
+            style: {
+              backgroundColor: '#fff'
+            }
+          }
         }),
       },
       {

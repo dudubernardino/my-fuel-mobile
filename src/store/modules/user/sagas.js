@@ -12,18 +12,20 @@ import {
 
 export function* updateProfile({payload}) {
   try {
-    const {name, email, id, admin, ...rest} = payload.data;
+    const {name, id, ...rest} = payload.data;
 
     const profile = Object.assign(
-      {name, email, admin},
+      { name },
       rest.oldPassword ? rest : {},
     );
 
-    const response = yield call(api.put, `users/${id}`, profile);
+    console.log(profile);
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    //const response = yield call(api.put, `users/${id}`, profile);
+
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
 
     Alert.alert('Sucesso!', 'Perfil atualizado com sucesso');
 
